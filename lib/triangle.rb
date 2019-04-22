@@ -1,26 +1,29 @@
 class Triangle
-
-  def initialize(length1, length2, length3)
-    @triangle_sides = []
-    @triangle_sides << length1
-    @triangle_sides << length2
-    @triangle_sides << length3
+  def initialize(side_1,side_2,side_3)
+    @side_1 = side_1
+    @side_2 = side_2
+    @side_3 = side_3
   end
 
-  def kind
-    if @triangle_sides.uniq.length == 1
-        return :equilateral
-      elsif @triangle_sides.uniq.length == 2
-        return :isosceles
-      else
-        return :scalene
-      end
-    else
+  def kind()
+    if (@side_1 <= 0) || (@side_2 <= 0) || (@side_3 <= 0)
       raise TriangleError
+    elsif (@side_1+@side_2 <= @side_3) || (@side_1+@side_3 <= @side_2) || (@side_2+@side_3 <= @side_1)
+      raise TriangleError
+    else
+      if (@side_1 == @side_2) && (@side_2 == @side_3)
+        :equilateral
+      elsif (@side_1 == @side_2) || (@side_2 == @side_3) || (@side_1 == @side_3)
+        :isosceles
+      elsif (@side_1 != @side_2) && (@side_2 != @side_3) && (@side_1 != @side_3)
+        :scalene
       end
     end
 
-  class TriangleError < StandardError
-
   end
+
+end
+
+class TriangleError < StandardError
+  # triangle error code
 end
