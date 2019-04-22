@@ -1,5 +1,5 @@
 class Triangle
-  
+
   def initialize(length1, length2, length3)
     @triangle_sides = []
     @triangle_sides << length1
@@ -18,7 +18,7 @@ class Triangle
     else
       raise TriangleError
       end
-    end 
+    end
   end
 
   class TriangleError < StandardError
